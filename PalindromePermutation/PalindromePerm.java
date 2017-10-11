@@ -6,7 +6,6 @@ import java.util.Map;
 public class PalindromePerm {
 	boolean isPalindromePermutation(String s){
 		Map<Character, Integer> map = new HashMap<Character, Integer>();
-		boolean isOdd = s.length()%2==0?false:true;
 		for(int i=0;i<s.length();i++){
 			if(map.containsKey(s.charAt(i))){
 				int count = map.get(s.charAt(i));
@@ -15,16 +14,11 @@ public class PalindromePerm {
 				map.put(s.charAt(i), 1);
 		}
 		
-		boolean odd = false;
+		int count = 0;
 		for(Map.Entry<Character, Integer> m : map.entrySet()){
-			if(m.getValue()%2 == 1)
-				odd = !odd;
+			count += m.getValue()%2;
 		}
-		
-		if(isOdd == odd)
-			return true;
-	
-		return false;
+		return count <= 1;
 	}
 
 }
